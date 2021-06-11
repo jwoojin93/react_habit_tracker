@@ -40,6 +40,15 @@ class App extends Component {
     this.setState({ habits });
   };
 
+  handleReset = () => {
+    const habits = this.state.habits.map((habit) => {
+      habit.count = 0;
+      return habit;
+    });
+    console.log(habits);
+    this.setState({ habits });
+  };
+
   render() {
     return (
       <>
@@ -52,6 +61,7 @@ class App extends Component {
           onDecrement={this.handleDecrement}
           onDelete={this.handleDelete}
           onAdd={this.handleAdd}
+          onReset={this.handleReset}
         />
       </>
     );
