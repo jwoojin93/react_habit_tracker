@@ -11,15 +11,10 @@ class Habit extends Component {
 
   handleDecrement = () => {
     this.props.onDecrement(this.props.habit);
-    this.setState({ count: this.props.habit.count - 1 });
   };
 
   handleDelete = () => {
     this.props.onDelete(this.props.habit);
-    console.log(this.props.habit);
-
-    Array.splice(this.props.habit);
-    // this.setState({  });
   };
 
   render() {

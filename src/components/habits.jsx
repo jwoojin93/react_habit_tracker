@@ -1,42 +1,41 @@
 import React, { Component } from "react";
 import Habit from "./habit";
+import HabitAddForm from "./habitAddForm";
 
 class Habits extends Component {
-  state = {
-    habits: [
-      { id: 1, name: "Reading", count: 0 },
-      { id: 2, name: "Running", count: 0 },
-      { id: 3, name: "Coding", count: 0 },
-    ],
-  };
-
   handleIncrement = (habit) => {
-    console.log(`handleIncrement ${habit.name}`);
-    habit.count++;
-    this.setState(this.state);
+    this.props.onIncrement(habit);
   };
 
   handleDecrement = (habit) => {
-    console.log(`handleDecrement ${habit.name}`);
+    this.props.onDecrement(habit);
   };
 
   handleDelete = (habit) => {
-    console.log(`handleDelete ${habit.name}`);
+    this.props.onDelete(habit);
+  };
+
+  handleAdd = (name) => {
+    this.props.onAdd(name);
   };
 
   render() {
     return (
-      <ul>
-        {this.state.habits.map((habit) => (
-          <Habit
-            key={habit.id}
-            habit={habit}
-            onIncrement={this.handleIncrement}
-            onDecrement={this.handleDecrement}
-            onDelete={this.handleDelete}
-          />
-        ))}
-      </ul>
+      <>
+        <HabitAddForm onAdd={this.handleAdd} />
+        <ul>
+          {this.props.habits.map((habit) => (
+            <Habit
+              key={habit.id}
+              habit={habit}
+              onIncrement={this.handleIncrement}
+              onDecrement={this.handleDecrement}
+              onDelete={this.handleDelete}
+              onAdd={this.handleAdd}
+            />
+          ))}
+        </ul>
+      </>
     );
   }
 }
